@@ -12,12 +12,12 @@ export class AppService {
 
   constructor(private http: Http) {}
 
-  doVoiceToSpeech(): Observable<any> {
+  fetchToken(): Observable<any> {
     return this.http
       .get(this.apiUrl)
       .map(response => response.text())
       .catch((error: any) => {
-        console.error('Watson API issue', error);
+        console.error('Watson API issue fetching token', error);
         return Observable.throw(error.message || error);
       });
   }
