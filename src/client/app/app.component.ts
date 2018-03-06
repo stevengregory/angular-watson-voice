@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { AppService } from './app.service';
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   @Input() text: any;
   token: any;
 
-  constructor(private appService: AppService) {}
+  constructor(private appService: AppService, private ngZone: NgZone) {}
 
   ngOnInit(): void {
     this.doVoiceToSpeech();
@@ -24,16 +24,19 @@ export class AppComponent implements OnInit {
   doVoiceToSpeech(): any {
     this.appService.doVoiceToSpeech().subscribe(token => {
       this.token = token;
-      console.log('token: ' + this.token);
       const stream = recognizeMicrophone({
         token: token,
         objectMode: true,
         extractResults: true,
         format: false
       });
-      stream.on('data', data => {
-        this.text = data.alternatives[0].transcript;
-        console.log(this.text);
+      this.ngZone.runOutsideAngular(() => {
+        stream.on('data', data => {
+          this.ngZone.run(() => {
+            this.text = data.alternatives[0].transcript;
+          });
+          console.log(this.text);
+        });
       });
     });
   }
