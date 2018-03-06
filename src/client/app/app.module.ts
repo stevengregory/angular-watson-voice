@@ -5,9 +5,11 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
 
+import { MatButtonModule } from '@angular/material';
+
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, HttpModule],
+  imports: [BrowserModule, HttpModule, MatButtonModule],
   providers: [AppService],
   bootstrap: [AppComponent]
 })
