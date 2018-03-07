@@ -3,14 +3,15 @@ import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { AppService } from './app.service';
+import { WatsonComponent } from './watson/watson.component';
+import { WatsonService } from './watson/watson.service';
 
 import { MatButtonModule } from '@angular/material';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, WatsonComponent],
   imports: [BrowserModule, HttpModule, MatButtonModule],
-  providers: [AppService],
+  providers: [WatsonService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

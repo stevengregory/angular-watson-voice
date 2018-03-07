@@ -7,7 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 @Injectable()
-export class AppService {
+export class WatsonService {
   private apiUrl = 'http://localhost:3002/api/speech-to-text/token';
 
   constructor(private http: Http) {}
