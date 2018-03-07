@@ -1,8 +1,7 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { WatsonService } from './watson.service';
-
 import * as recognizeMicrophone from 'watson-speech/speech-to-text/recognize-microphone';
 
 @Component({
@@ -10,15 +9,13 @@ import * as recognizeMicrophone from 'watson-speech/speech-to-text/recognize-mic
   templateUrl: './watson.component.html',
   styleUrls: ['./watson.component.scss']
 })
-export class WatsonComponent implements OnInit {
-  text: any;
-  token: any;
+export class WatsonComponent {
+  text: String;
+  token: Object;
 
   constructor(private watsonService: WatsonService, private ngZone: NgZone) {}
 
-  ngOnInit() {}
-
-  activateWatson(): any {
+  activateWatson(): void {
     this.watsonService.fetchToken().subscribe(token => {
       this.token = token;
       const stream = recognizeMicrophone({
