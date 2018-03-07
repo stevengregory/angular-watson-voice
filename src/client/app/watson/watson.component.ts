@@ -22,7 +22,7 @@ export class WatsonComponent {
         token: token,
         objectMode: true,
         extractResults: true,
-        format: false
+        format: true
       });
       this.ngZone.runOutsideAngular(() => {
         stream.on('data', data => {
