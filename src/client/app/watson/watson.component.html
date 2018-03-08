@@ -3,7 +3,11 @@
     <i class="fas fa-microphone"></i>Activate
   </button>
   <button mat-raised-button color="warn" (click)="stopStream()">
-    <i class="fas fa-stop-circle"></i>Stop
+    <i class="fas fa-microphone-slash"></i>Stop
   </button>
-  <h1>{{ text }}</h1>
+  <div class="text-stream">
+    <i class="fas fa-quote-left"></i>
+    <p>{{ text }}</p>
+    <i class="fas fa-quote-right"></i>
+  </div>
 </div>
