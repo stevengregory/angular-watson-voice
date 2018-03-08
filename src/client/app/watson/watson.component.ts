@@ -10,6 +10,7 @@ import * as recognizeMicrophone from 'watson-speech/speech-to-text/recognize-mic
   styleUrls: ['./watson.component.scss']
 })
 export class WatsonComponent {
+  stream: any;
   text: String;
   token: Object;
 
@@ -18,14 +19,14 @@ export class WatsonComponent {
   activateWatson(): void {
     this.watsonService.fetchToken().subscribe(token => {
       this.token = token;
-      const stream = recognizeMicrophone({
+      this.stream = recognizeMicrophone({
         token: token,
         objectMode: true,
         extractResults: true,
         format: true
       });
       this.ngZone.runOutsideAngular(() => {
-        stream.on('data', data => {
+        this.stream.on('data', data => {
           this.ngZone.run(() => {
             this.text = data.alternatives[0].transcript;
           });
@@ -33,5 +34,11 @@ export class WatsonComponent {
         });
       });
     });
+  }
+
+  stopStream(): void {
+    if (this.stream) {
+      this.stream.stop();
+    }
   }
 }

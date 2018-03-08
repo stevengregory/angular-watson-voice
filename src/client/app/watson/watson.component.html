@@ -1,5 +1,9 @@
 <div class="watson">
   <button mat-raised-button (click)="activateWatson()">
-    <i class="fas fa-microphone"></i>Activate Watson</button>
+    <i class="fas fa-microphone"></i>Activate
+  </button>
+  <button mat-raised-button color="warn" (click)="stopStream()">
+    <i class="fas fa-stop-circle"></i>Stop
+  </button>
   <h1>{{ text }}</h1>
 </div>
