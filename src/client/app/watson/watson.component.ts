@@ -2,6 +2,7 @@ import { Component, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { WatsonService } from './watson.service';
+import { Transcription } from '../core';
 import * as recognizeMicrophone from 'watson-speech/speech-to-text/recognize-microphone';
 
 @Component({
@@ -11,29 +12,31 @@ import * as recognizeMicrophone from 'watson-speech/speech-to-text/recognize-mic
 })
 export class WatsonComponent {
   stream: any;
-  text: String;
-  token: Object;
+  text: string;
+  token: string;
 
   constructor(private watsonService: WatsonService, private ngZone: NgZone) {}
 
-  activateWatson(): void {
+  startSteam(): void {
     this.watsonService.fetchToken().subscribe(token => {
-      this.token = token;
-      this.stream = recognizeMicrophone({
-        token: token,
-        objectMode: true,
-        extractResults: true,
-        format: true
-      });
+      this.stream = recognizeMicrophone(this.setStream(token));
       this.ngZone.runOutsideAngular(() => {
         this.stream.on('data', data => {
           this.ngZone.run(() => {
             this.text = data.alternatives[0].transcript;
           });
-          console.log(this.text);
         });
       });
     });
+  }
+
+  setStream(token): Transcription {
+    return {
+      token: token,
+      format: true,
+      extractResults: true,
+      objectMode: true
+    };
   }
 
   stopStream(): void {
