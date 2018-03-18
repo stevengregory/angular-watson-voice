@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { catchError, map } from 'rxjs/operators';
@@ -9,12 +8,12 @@ import { catchError, map } from 'rxjs/operators';
 export class WatsonService {
   private apiUrl = 'http://localhost:3002/api/speech-to-text/token';
 
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
-  fetchToken(): Observable<any> {
+  fetchToken(): Observable<string> {
     return this.http
-      .get(this.apiUrl)
-      .pipe(map(response => response.text()), catchError(this.handleError));
+      .get(this.apiUrl, { responseType: 'text' })
+      .pipe(map(res => res), catchError(this.handleError));
   }
 
   private handleError(res: HttpErrorResponse) {

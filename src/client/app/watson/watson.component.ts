@@ -30,7 +30,7 @@ export class WatsonComponent {
     });
   }
 
-  setStream(token): Transcription {
+  setStream(token: string): Transcription {
     return {
       token: token,
       format: true,
