@@ -11,6 +11,7 @@ import * as recognizeMicrophone from 'watson-speech/speech-to-text/recognize-mic
   styleUrls: ['./watson.component.scss']
 })
 export class WatsonComponent {
+  isStreaming: boolean;
   stream: any;
   text: string;
   token: string;
@@ -18,6 +19,7 @@ export class WatsonComponent {
   constructor(private watsonService: WatsonService, private ngZone: NgZone) {}
 
   startSteam(): void {
+    this.isStreaming = true;
     this.watsonService.fetchToken().subscribe(token => {
       this.stream = recognizeMicrophone(this.setStream(token));
       this.ngZone.runOutsideAngular(() => {
@@ -41,6 +43,7 @@ export class WatsonComponent {
 
   stopStream(): void {
     if (this.stream) {
+      this.isStreaming = false;
       this.stream.stop();
     }
   }
