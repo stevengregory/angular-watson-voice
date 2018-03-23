@@ -1,14 +1,16 @@
-<mat-progress-bar *ngIf="isStreaming" mode="indeterminate"></mat-progress-bar>
 <div class="watson">
+  <div class="stream">
+    <mat-progress-bar *ngIf="isStreaming" mode="indeterminate"></mat-progress-bar>
+    <div class="stream-content">
+      <i class="fas fa-quote-left"></i>
+      <p>{{ text }}</p>
+      <i class="fas fa-quote-right"></i>
+    </div>
+  </div>
   <button mat-raised-button (click)="startSteam()">
     <i class="fas fa-microphone"></i>Activate
   </button>
   <button mat-raised-button color="warn" (click)="stopStream()">
     <i class="fas fa-microphone-slash"></i>Stop
   </button>
-  <div class="text-stream">
-    <i class="fas fa-quote-left"></i>
-    <p>{{ text }}</p>
-    <i class="fas fa-quote-right"></i>
-  </div>
 </div>
