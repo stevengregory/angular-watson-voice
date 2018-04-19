@@ -2,7 +2,7 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { WatsonService } from './watson.service';
-import { Transcription } from '../core';
+import { RecognizeStream } from '../core';
 import * as recognizeMicrophone from 'watson-speech/speech-to-text/recognize-microphone';
 
 @Component({
@@ -26,7 +26,7 @@ export class WatsonComponent implements OnInit {
     this.watsonService.fetchToken().subscribe(token => (this.token = token));
   }
 
-  setOptions(token: string): Transcription {
+  setOptions(token: string): RecognizeStream {
     return {
       token: token,
       format: true,

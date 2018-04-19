@@ -1,1 +1,1 @@
-export * from './transcription.interface';
+export * from './recognize-stream.interface';

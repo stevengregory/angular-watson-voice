@@ -1,4 +1,4 @@
-export interface Transcription {
+export interface RecognizeStream {
   token: string;
   format?: boolean;
   keepMicrophone?: boolean;
