@@ -5,6 +5,6 @@ export interface RecognizeStream {
   outputElement?: string;
   extractResults?: boolean;
   objectMode?: boolean;
-  resultsbySpeaker?: boolean;
+  resultsBySpeaker?: boolean;
   mediaStream?: MediaStream;
 }
