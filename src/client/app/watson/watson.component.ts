@@ -1,5 +1,4 @@
 import { Component, NgZone, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 
 import { WatsonService } from './watson.service';
 import { RecognizeStream } from '../core';
