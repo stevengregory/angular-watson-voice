@@ -2,6 +2,8 @@
 
 An [IBM Watson](https://www.ibm.com/watson/) speech to text application in Angular and Node. Uses the [speech-javascript-sdk](https://github.com/watson-developer-cloud/speech-javascript-sdk) library for speech to text services in web browsers.
 
+![Angular Watson Voice](https://i.imgur.com/aMOLZav.gif)
+
 ## Requirements
 
 1. Get IBM Watson service credentials
